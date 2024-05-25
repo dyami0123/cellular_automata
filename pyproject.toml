@@ -1,0 +1,42 @@
+[project]
+name = "cellular_automata"
+description="A library for simulating cellular automata in Python."
+version="0.1.0"
+authors=[
+    { name = "Dyami Andrews" }
+]
+requires-python = ">=3.9,<3.12"
+
+dependencies=[
+    "pyarrow",
+    "dask",
+    "s3fs",
+    "matplotlib",
+    "geopandas",
+    "h3",
+    "scikit-learn",
+    "loguru",
+    "pydantic>=2",
+    "pytest",
+    "pylint",
+    "isort",
+    "ipykernel",
+    "requests",
+]
+
+[project.optional-dependencies]
+primary=[
+]
+
+dev=[
+    "darker",
+    "pytest",
+    "pytest-sugar",
+    ] 
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json","*.yaml"]
+

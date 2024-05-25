@@ -1465,6 +1465,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "cellular_automata"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "bevy",
+ "forma-render",
+ "ggez",
+ "serde",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "winit 0.30.0",
+]
+
+[[package]]
 name = "cesu8"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4463,22 +4479,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "shapes_vis_ui"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "axum",
- "bevy",
- "forma-render",
- "ggez",
- "serde",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "winit 0.30.0",
 ]
 
 [[package]]

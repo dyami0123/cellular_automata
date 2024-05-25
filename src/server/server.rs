@@ -5,29 +5,11 @@ use crate::server::endpoints;
 use crate::server::json_or_form::JsonOrForm;
 use crate::server::payloads::{ClearPayload, MultipleShapesPayload, ShapePayload};
 use crate::server::router::ApiRouter;
-use tokio::sync::mpsc;
 use tracing::Level;
 use tracing_subscriber::FmtSubscriber;
 
-use axum::{
-    async_trait,
-    extract::{FromRequest, Request},
-    http::{header::CONTENT_TYPE, StatusCode},
-    response::{IntoResponse, Response},
-    routing::post,
-    Form, Json, RequestExt, Router,
-};
+use axum::routing::post;
 
-async fn shapes_handler(
-    JsonOrForm(payload): JsonOrForm<ShapePayload>,
-    tx: mpsc::Sender<ShapePayload>,
-) {
-    if let Err(e) = tx.send(payload).await {
-        tracing::error!("failed to send shapes payload: {}", e);
-    }
-}
-
-// #[tokio::main]
 pub async fn run() {
     let subscriber = FmtSubscriber::builder()
         .with_max_level(Level::TRACE) // Set the maximum log level to TRACE

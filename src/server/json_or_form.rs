@@ -1,18 +1,13 @@
-use crate::server::endpoint_handler::EndpointHandler;
-use crate::server::payloads::Payload;
-use axum::{
-    http::StatusCode,
-    response::{IntoResponse, Response},
-    routing::post,
-    Json, Router,
-};
-
-use super::payloads::ShapePayload;
 use axum::{
     async_trait,
     extract::{FromRequest, Request},
     http::header::CONTENT_TYPE,
     Form, RequestExt,
+};
+use axum::{
+    http::StatusCode,
+    response::{IntoResponse, Response},
+    Json,
 };
 pub struct JsonOrForm<T>(pub T);
 

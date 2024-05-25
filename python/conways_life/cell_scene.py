@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 import numpy as np
-import pandas as pd
 
 from .cell_shape import CellShape
 from .cell_states import CellStates
@@ -20,7 +19,6 @@ class CellScene:
     cell_spacing_x: float = 1
     cell_spacing_y: float = 1
 
-    cell_color: tuple[float, float, float, float] = (1, 1, 1, 1)
     cell_color: tuple[float, float, float, float] = (1, 1, 1, 1)
 
     def to_shapes(self) -> list[CellShape]:

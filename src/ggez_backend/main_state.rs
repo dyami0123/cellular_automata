@@ -7,6 +7,7 @@ use ggez::{Context, GameResult};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
+#[allow(dead_code)]
 pub struct MainState {
     shapes: Arc<Mutex<HashMap<i32, Box<dyn shapes::shape::Shape>>>>,
     drawn_shape_ids: Vec<i32>,
@@ -47,12 +48,15 @@ impl MainState {
                 ctx,
                 canvas: &mut canvas,
             };
-            renderer.draw_shape(Box::as_ref(shape));
+            renderer.draw_shape(Box::as_ref(shape)).unwrap_or_else(|e| {
+                tracing::error!("Error drawing shape: {:?}", e);
+            });
         }
         canvas.finish(ctx)?;
         Ok(())
     }
 
+    #[allow(dead_code)] // this function is not used in the current implementation
     fn draw_skipping_shapes(&mut self, ctx: &mut Context) -> GameResult {
         let mut canvas: graphics::Canvas;
 
@@ -84,7 +88,11 @@ impl MainState {
                 ctx,
                 canvas: &mut canvas,
             };
-            renderer.draw_shape(Box::as_ref(&shapes[id]));
+            renderer
+                .draw_shape(Box::as_ref(&shapes[id]))
+                .unwrap_or_else(|e| {
+                    tracing::error!("Error drawing shape: {:?}", e);
+                });
 
             self.drawn_shape_ids.push(*id);
         }
